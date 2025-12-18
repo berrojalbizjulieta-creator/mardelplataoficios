@@ -23,7 +23,7 @@ export function Logo(props: any) {
         />
       </svg>
       <div className="text-xl font-bold font-headline">
-        <span className="text-primary">BahiaBlanca</span>
+        <span className="text-primary">MarDelPlata</span>
         <span className="text-foreground">Oficios</span>
       </div>
     </div>

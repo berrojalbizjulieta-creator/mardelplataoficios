@@ -22,10 +22,10 @@ export default function AboutUsPage() {
             <Card className="max-w-3xl mt-4 shadow-lg">
                 <CardContent className="p-8 text-left text-muted-foreground md:text-lg space-y-6">
                    <p>
-                    Bahía Blanca Oficios es un espacio creado para conectar a vecinos con profesionales de confianza. La plataforma permite que cada especialista muestre con claridad quién es y qué hace, mientras que los usuarios pueden encontrar rápidamente a la persona indicada para cada necesidad.
+                    MarDelPlataOficios es un espacio creado para conectar a vecinos con profesionales de confianza. La plataforma permite que cada especialista muestre con claridad quién es y qué hace, mientras que los usuarios pueden encontrar rápidamente a la persona indicada para cada necesidad.
                     </p>
                     <p>
-                    Cada perfil incluye reseñas verificadas de otros vecinos, ofreciendo transparencia y seguridad al momento de elegir. Nuestro objetivo es ser un puente de confianza: un lugar donde la información sea clara, los profesionales sean visibles y las decisiones más simples. Bahía Blanca Oficios nació para acercar personas y servicios, sin vueltas.
+                    Cada perfil incluye reseñas verificadas de otros vecinos, ofreciendo transparencia y seguridad al momento de elegir. Nuestro objetivo es ser un puente de confianza: un lugar donde la información sea clara, los profesionales sean visibles y las decisiones más simples. MarDelPlataOficios nació para acercar personas y servicios, sin vueltas.
                     </p>
                 </CardContent>
             </Card>

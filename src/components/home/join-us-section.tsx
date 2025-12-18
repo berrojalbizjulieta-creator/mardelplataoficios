@@ -112,7 +112,7 @@ export default function JoinUsSection() {
               Unite a la comunidad
             </h2>
             <p className="mt-4 text-muted-foreground text-lg">
-              Cualquiera sea el trabajo que hagas, tenemos clientes buscándote. Formá parte de la comunidad de profesionales de Bahía Blanca Oficios y activá tu Plan Premium GRATIS por 1 mes.
+              Cualquiera sea el trabajo que hagas, tenemos clientes buscándote. Formá parte de la comunidad de profesionales de Mar del Plata Oficios y activá tu Plan Premium GRATIS por 1 mes.
             </p>
             <Button asChild className="mt-6">
               <Link href="/signup">

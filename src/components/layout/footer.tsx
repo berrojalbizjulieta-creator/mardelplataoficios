@@ -25,7 +25,7 @@ export function Footer() {
                 <Logo className="h-10 w-auto" />
               </div>
               <p className="mt-4 max-w-xs text-sm text-muted-foreground mx-auto lg:mx-0">
-                Conectando a la comunidad de Bahía Blanca con los mejores
+                Conectando a la comunidad de Mar del Plata con los mejores
                 profesionales y oficios.
               </p>
               <div className="mt-6 flex space-x-4 justify-center lg:justify-start">
@@ -151,7 +151,7 @@ export function Footer() {
 
           <div className="mt-10 border-t border-border pt-6 text-center text-sm text-muted-foreground">
             <p>
-              &copy; {new Date().getFullYear()} Bahia Blanca Oficios. Todos los
+              &copy; {new Date().getFullYear()} MarDelPlataOficios. Todos los
               derechos reservados.
             </p>
           </div>

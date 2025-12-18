@@ -19,7 +19,7 @@ export default function HeroSection() {
     <section 
       className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center text-white" 
       style={{ 
-        backgroundImage: "url('https://i.pinimg.com/1200x/2e/aa/5c/2eaa5ca96662e74cb7e59c297d9f6dd0.jpg')", 
+        backgroundImage: "url('https://i.postimg.cc/pT3YjDcp/lobo.jpg')", 
         backgroundSize: 'cover', 
         backgroundPosition: 'center' 
       }}

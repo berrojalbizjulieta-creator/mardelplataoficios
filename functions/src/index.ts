@@ -3,7 +3,7 @@
 // functions/src/index.ts
 
 import * as admin from "firebase-admin";
-import { onDocumentWritten, Change, DocumentSnapshot, FirestoreEvent } from "firebase-functions/v2/firestore";
+import {onDocumentWritten, Change, DocumentSnapshot, FirestoreEvent} from "firebase-functions/v2/firestore";
 import * as functions from "firebase-functions";
 
 admin.initializeApp();
@@ -61,28 +61,28 @@ export const updateProfessionalAvgRating = onDocumentWritten(
     const avgRating = numberOfReviews > 0 ? totalRating / numberOfReviews : 0;
 
     const professionalRef = db.collection("professionalsDetails").doc(professionalId);
-    
+
     try {
-        const professionalDoc = await professionalRef.get();
-        const dataToUpdate = {
-            avgRating: parseFloat(avgRating.toFixed(2)),
-            totalReviews: numberOfReviews,
-        };
+      const professionalDoc = await professionalRef.get();
+      const dataToUpdate = {
+        avgRating: parseFloat(avgRating.toFixed(2)),
+        totalReviews: numberOfReviews,
+      };
 
-        if (professionalDoc.exists) {
-            await professionalRef.update(dataToUpdate);
-        } else {
-            await professionalRef.set(dataToUpdate);
-        }
+      if (professionalDoc.exists) {
+        await professionalRef.update(dataToUpdate);
+      } else {
+        await professionalRef.set(dataToUpdate);
+      }
 
-        functions.logger.log(
-            `Professional ${professionalId} avgRating/totalReviews updated to ${avgRating.toFixed(2)} with ${numberOfReviews} reviews.`,
-        );
+      functions.logger.log(
+        `Professional ${professionalId} avgRating/totalReviews updated to ${avgRating.toFixed(2)} with ${numberOfReviews} reviews.`,
+      );
     } catch (error) {
-        functions.logger.error(
-            `Error updating professional ${professionalId} rating:`,
-            error,
-        );
+      functions.logger.error(
+        `Error updating professional ${professionalId} rating:`,
+        error,
+      );
     }
 
     return null;

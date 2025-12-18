@@ -5,24 +5,27 @@ import { getAuth, Auth } from "firebase/auth";
 import { getFirestore, Firestore } from "firebase/firestore";
 import { getStorage, FirebaseStorage } from "firebase/storage";
 import { getFunctions, Functions } from 'firebase/functions';
+import { getAnalytics } from "firebase/analytics";
 
-// Esta es la configuración de tu NUEVO y único proyecto de Firebase.
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-  apiKey: "AIzaSyA43q5nZJq-g_btpQhsmEw3i7s52Gjl1lQ",
-  authDomain: "studio-4820039016-83344.firebaseapp.com",
-  // ------------------------------------------------------------------
-  // ¡ESTE ES EL ID DE TU NUEVO PROYECTO! 
-  // Búscalo en console.firebase.google.com para acceder a su consola.
-  // ------------------------------------------------------------------
-  projectId: "studio-4820039016-83344",
-  storageBucket: "studio-4820039016-83344.appspot.com",
-  messagingSenderId: "54230232537",
-  appId: "1:54230232537:web:c02d8479e95195ed8422aa"
+  apiKey: "AIzaSyA0i9N5nTatNI7QUSX1x8Oj9TZFBpcsjGQ",
+  authDomain: "mardelplataoficios.firebaseapp.com",
+  projectId: "mardelplataoficios",
+  storageBucket: "mardelplataoficios.appspot.com",
+  messagingSenderId: "467689142180",
+  appId: "1:467689142180:web:9d48f43b71b35b7c247331",
+  measurementId: "G-K1J09TWGZH"
 };
+
 
 let app: FirebaseApp;
 if (getApps().length === 0) {
   app = initializeApp(firebaseConfig);
+    if (typeof window !== 'undefined') {
+    getAnalytics(app);
+  }
 } else {
   app = getApp();
 }

@@ -21,7 +21,7 @@ TÉRMINOS Y CONDICIONES DE USO
 
 Aceptación de los Términos
 
-Al registrarse en BahiaBlancaOficios, los USUARIOS aceptan estos Términos y Condiciones, que regulan el uso de la plataforma, los servicios ofrecidos y la relación entre CLIENTES y PROFESIONALES.
+Al registrarse en CerrajerosArgentinos, los USUARIOS aceptan estos Términos y Condiciones, que regulan el uso de la plataforma, los servicios ofrecidos y la relación entre CLIENTES y PROFESIONALES.
 
 El uso de la plataforma implica la aceptación de todas las cláusulas, sin perjuicio de lo dispuesto por la legislación argentina vigente.
 
@@ -37,17 +37,17 @@ El registro de USUARIOS CLIENTES es totalmente gratuito, sin ningún costo para 
 
 Los USUARIOS PROFESIONALES podrán contratar servicios opcionales de publicidad o destacación, que permitirán aparecer como recomendados o resaltados dentro de la plataforma. La activación de estos servicios será voluntaria y exclusiva para PROFESIONALES, sin generar ningún cargo a los USUARIOS CLIENTES.
 
-BahiaBlancaOficios podrá rechazar o eliminar perfiles de USUARIOS sin expresión de causa, sin generar derecho a reclamo.
+CerrajerosArgentinos podrá rechazar o eliminar perfiles de USUARIOS sin expresión de causa, sin generar derecho a reclamo.
 
 Responsabilidad de los USUARIOS
 
-Los USUARIOS PROFESIONALES son responsables frente a BahiaBlancaOficios y terceros por todos los contenidos que incluyan en su perfil, información de contacto, imágenes, descripción de servicios y cualquier otro contenido.
+Los USUARIOS PROFESIONALES son responsables frente a CerrajerosArgentinos y terceros por todos los contenidos que incluyan en su perfil, información de contacto, imágenes, descripción de servicios y cualquier otro contenido.
 
 Deben garantizar que los contenidos no sean ilícitos, ofensivos, discriminatorios o contrarios a la moral y buenas costumbres.
 
-Los USUARIOS PROFESIONALES deberán mantener indemne a BahiaBlancaOficios frente a cualquier reclamo, gasto o acción legal derivada del contenido de sus perfiles o de la relación con USUARIOS CLIENTES.
+Los USUARIOS PROFESIONALES deberán mantener indemne a CerrajerosArgentinos frente a cualquier reclamo, gasto o acción legal derivada del contenido de sus perfiles o de la relación con USUARIOS CLIENTES.
 
-BahiaBlancaOficios no será responsable de ningún daño directo o indirecto, lucro cesante o pérdida de oportunidad que pudiera surgir de la interacción entre USUARIOS CLIENTES y PROFESIONALES.
+CerrajerosArgentinos no será responsable de ningún daño directo o indirecto, lucro cesante o pérdida de oportunidad que pudiera surgir de la interacción entre USUARIOS CLIENTES y PROFESIONALES.
 
 Publicidad y Destacados
 
@@ -63,7 +63,7 @@ Los datos personales de los USUARIOS CLIENTES y PROFESIONALES serán tratados co
 
 Los USUARIOS PROFESIONALES solo recibirán los datos de contacto de USUARIOS CLIENTES que soliciten información sobre sus servicios, y deberán utilizarlos únicamente con fines de contacto y contratación directa.
 
-BahiaBlancaOficios adoptará medidas técnicas y operativas adecuadas para proteger los datos personales de todos los USUARIOS.
+CerrajerosArgentinos adoptará medidas técnicas y operativas adecuadas para proteger los datos personales de todos los USUARIOS.
 
 Pagos e Impuestos
 
@@ -73,13 +73,13 @@ El registro y acceso de USUARIOS CLIENTES es gratuito y no genera obligación tr
 
 Cancelación y Suspensión
 
-BahiaBlancaOficios podrá suspender, eliminar o bloquear perfiles de USUARIOS PROFESIONALES en caso de incumplimiento de estos Términos y Condiciones, o de comportamientos ilícitos o que afecten a otros USUARIOS.
+CerrajerosArgentinos podrá suspender, eliminar o bloquear perfiles de USUARIOS PROFESIONALES en caso de incumplimiento de estos Términos y Condiciones, o de comportamientos ilícitos o que afecten a otros USUARIOS.
 
 Los USUARIOS PROFESIONALES no tendrán derecho a reclamo por la suspensión o eliminación de sus perfiles, salvo que medie error atribuible a la plataforma.
 
 Propiedad Intelectual
 
-Todos los contenidos de la plataforma, incluyendo logos, diseño, códigos, textos e imágenes, son propiedad de BahiaBlancaOficios o de terceros que han autorizado su uso.
+Todos los contenidos de la plataforma, incluyendo logos, diseño, códigos, textos e imágenes, son propiedad de CerrajerosArgentinos o de terceros que han autorizado su uso.
 
 Los USUARIOS PROFESIONALES y CLIENTES se comprometen a no reproducir, distribuir ni modificar ningún contenido sin autorización expresa.
 
@@ -87,7 +87,7 @@ Ley Aplicable y Jurisdicción
 
 Estos Términos y Condiciones se rigen por las leyes de la República Argentina.
 
-Cualquier conflicto o disputa será sometido a los tribunales ordinarios de Bahía Blanca, renunciando a cualquier otro fuero o jurisdicción.
+Cualquier conflicto o disputa será sometido a los tribunales ordinarios competentes de la República Argentina.
 `;
 
 export default function TermsDialog({ isOpen, onOpenChange }: TermsDialogProps) {
@@ -102,7 +102,7 @@ export default function TermsDialog({ isOpen, onOpenChange }: TermsDialogProps) 
         </DialogHeader>
         <ScrollArea className="h-96 pr-6">
             <div className="prose prose-sm dark:prose-invert whitespace-pre-wrap">
-                {termsContent.replace(/\[Nombre de la plataforma]/g, 'BahiaBlancaOficios')}
+                {termsContent.replace(/\[Nombre de la plataforma]/g, 'CerrajerosArgentinos')}
             </div>
         </ScrollArea>
         <DialogFooter>

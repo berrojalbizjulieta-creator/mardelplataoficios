@@ -37,7 +37,7 @@ interface VerificationTabProps {
 }
 
 const policyText = `
-**Política de Documentos Sensibles – BahiaBlancaOficios**
+**Política de Documentos Sensibles – CerrajerosArgentinos**
 
 **Objetivo:**
 Los PROFESIONALES pueden subir voluntariamente: dorso y anverso de su DNI y una selfie sosteniendo el DNI, con el fin exclusivo de verificar su identidad y aumentar la confianza ante los CLIENTES.
@@ -46,7 +46,7 @@ Los PROFESIONALES pueden subir voluntariamente: dorso y anverso de su DNI y una 
 Esta política aplica a todos los PROFESIONALES que decidan realizar la verificación. Los CLIENTES no necesitan subir documentos para utilizar la plataforma.
 
 **Acceso a la información:**
-Los documentos sensibles serán accesibles únicamente por personal autorizado de BahiaBlancaOficios y no se compartirán con otros USUARIOS ni terceros sin consentimiento expreso, salvo obligación legal.
+Los documentos sensibles serán accesibles únicamente por personal autorizado de CerrajerosArgentinos y no se compartirán con otros USUARIOS ni terceros sin consentimiento expreso, salvo obligación legal.
 
 **Almacenamiento y seguridad:**
 Los documentos se almacenarán de manera segura, cifrados en servidores protegidos, y solo por el tiempo necesario para la verificación y habilitación del PROFESIONAL.
@@ -255,7 +255,7 @@ export default function VerificationTab({ isVerified, verificationStatus, profes
             <DialogHeader>
                 <DialogTitle>Política de Documentos Sensibles</DialogTitle>
                 <DialogDescription>
-                    BahiaBlancaOficios se compromete a proteger tu información.
+                    CerrajerosArgentinos se compromete a proteger tu información.
                 </DialogDescription>
             </DialogHeader>
             <ScrollArea className="h-72">

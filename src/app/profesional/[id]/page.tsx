@@ -334,8 +334,8 @@ export default function PublicProfilePage() {
     if (!professional) return;
 
     const shareData = {
-      title: `Perfil de ${professional.name} en BahiaBlancaOficios`,
-      text: `¡Mirá el perfil de este profesional en BahiaBlancaOficios!`,
+      title: `Perfil de ${professional.name} en CerrajerosArgentinos`,
+      text: `¡Mirá el perfil de este profesional en CerrajerosArgentinos!`,
       url: window.location.href,
     };
 

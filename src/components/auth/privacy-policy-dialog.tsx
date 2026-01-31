@@ -17,11 +17,11 @@ interface PrivacyPolicyDialogProps {
 }
 
 const privacyContent = `
-POLÍTICA DE PRIVACIDAD DE BAHIABLANCAOFICIOS
+POLÍTICA DE PRIVACIDAD DE CERRAJEROSARGENTINOS
 
 Fecha de última actualización: 28 de julio de 2024
 
-En BahiaBlancaOficios, respetamos su privacidad y nos comprometemos a proteger sus datos personales. Esta política de privacidad le informará sobre cómo cuidamos sus datos personales cuando visita nuestro sitio web (independientemente de dónde lo visite) y le informará sobre sus derechos de privacidad y cómo la ley lo protege.
+En CerrajerosArgentinos, respetamos su privacidad y nos comprometemos a proteger sus datos personales. Esta política de privacidad le informará sobre cómo cuidamos sus datos personales cuando visita nuestro sitio web (independientemente de dónde lo visite) y le informará sobre sus derechos de privacidad y cómo la ley lo protege.
 
 1. Información que recopilamos
 

@@ -32,7 +32,7 @@ export default function AppPromoSection() {
           <div className="text-center md:text-left">
             <div className="flex flex-col font-headline tracking-tighter text-foreground">
                 <span className="text-3xl md:text-4xl font-bold">PRÓXIMAMENTE...</span>
-                <span className="text-2xl md:text-3xl font-medium self-start md:self-end">app pensada para cerrajeros que dan soluciones</span>
+                <span className="text-2xl md:text-3xl font-medium self-start md:self-end">Una app pensada para cerrajeros que resuelven.</span>
             </div>
           </div>
         </div>

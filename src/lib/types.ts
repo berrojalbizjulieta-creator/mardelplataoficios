@@ -59,6 +59,7 @@ export interface Professional {
   specialties: string[];
   avgRating: number;
   categoryIds: number[];
+  localidad?: string; // Campo para la ubicación del profesional
   workPhotos?: WorkPhoto[];
   isVerified: boolean;
   isFeatured?: boolean; 

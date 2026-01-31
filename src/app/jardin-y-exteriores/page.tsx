@@ -81,9 +81,12 @@ const ServiceCard = ({ subtitle, title, categoryName, image }: { subtitle?: stri
     if (!image) return null;
 
     const category = getCategoryByName(categoryName);
+    // Si la categoría ya no existe (porque la app es solo de cerrajeros), no renderizar la tarjeta.
     if (!category) return null;
     
-    const link = `/servicios/${encodeURIComponent(category.name.toLowerCase().replace(/ y /g, '-').replace(/ /g, '-'))}`;
+    // Se cambia el link para apuntar a la nueva estructura de cerrajeros, aunque estas categorías no apliquen.
+    // Esto es para evitar errores, idealmente esta página se eliminaría o re-diseñaría.
+    const link = `/cerrajeros`;
 
     return (
         <Link href={link} className="group">

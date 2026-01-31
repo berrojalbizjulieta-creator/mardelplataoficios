@@ -1,3 +1,4 @@
+
 'use client';
 
 import Image from 'next/image';
@@ -109,10 +110,10 @@ export default function JoinUsSection() {
           </div>
           <div className="text-center md:text-left">
             <h2 className="text-3xl md:text-4xl font-bold font-headline tracking-tighter text-foreground">
-              Unite a la comunidad
+              Unite a nuestra comunidad de cerrajeros
             </h2>
             <p className="mt-4 text-muted-foreground text-lg">
-              Cualquiera sea el trabajo que hagas, tenemos clientes buscándote. Formá parte de la comunidad de profesionales de Mar del Plata Oficios y activá tu Plan Premium GRATIS por 1 mes.
+              Si sos cerrajero, formá parte de nuestra comunidad de profesionales de Argentina y activá tu Plan Premium GRATIS por 1 mes.
             </p>
             <Button asChild className="mt-6">
               <Link href="/signup">

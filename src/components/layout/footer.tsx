@@ -1,4 +1,5 @@
 
+
 'use client';
 
 import { Facebook, Instagram, Phone, Mail } from 'lucide-react';
@@ -25,7 +26,7 @@ export function Footer() {
                 <Logo className="h-10 w-auto" />
               </div>
               <p className="mt-4 max-w-xs text-sm text-muted-foreground mx-auto lg:mx-0">
-                Conectando a la comunidad de Mar del Plata con los mejores
+                Conectando a la comunidad de Argentina con los mejores
                 profesionales y oficios.
               </p>
               <div className="mt-6 flex space-x-4 justify-center lg:justify-start">
@@ -52,31 +53,31 @@ export function Footer() {
 
             <div className="grid grid-cols-2 gap-8 lg:col-span-3 sm:grid-cols-4 text-center sm:text-left">
               <div>
-                <p className="font-bold text-foreground">Servicios</p>
+                <p className="font-bold text-foreground">Localidades</p>
                 <nav className="mt-4 flex flex-col space-y-2 text-sm">
                   <Link
-                    href="/servicios/mudanzas"
+                    href="/cerrajeros/caba"
                     className="text-muted-foreground hover:text-primary"
                   >
-                    Mudanzas
+                    CABA
                   </Link>
                   <Link
-                    href="/servicios/electricista"
+                    href="/cerrajeros/la-plata"
                     className="text-muted-foreground hover:text-primary"
                   >
-                    Electricidad
+                    La Plata
                   </Link>
                   <Link
-                    href="/servicios/pintores"
+                    href="/cerrajeros/mar-del-plata"
                     className="text-muted-foreground hover:text-primary"
                   >
-                    Pintura
+                    Mar del Plata
                   </Link>
                   <Link
-                    href="/servicios/reparaciones"
+                    href="/cerrajeros"
                     className="text-muted-foreground hover:text-primary"
                   >
-                    Reparaciones
+                    Ver todas
                   </Link>
                 </nav>
               </div>
@@ -88,7 +89,7 @@ export function Footer() {
                     href="/sobre-nosotros"
                     className="text-muted-foreground hover:text-primary"
                   >
-                    Sobre OficiosBB
+                    Sobre el Proyecto
                   </Link>
                   <Link
                     href="/signup"

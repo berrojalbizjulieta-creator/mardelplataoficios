@@ -23,7 +23,7 @@ import {
   SelectValue,
 } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { CATEGORIES } from '@/lib/data';
+import { LOCALIDADES_ARGENTINA } from '@/lib/data';
 import Link from 'next/link';
 import {
   Form,
@@ -54,7 +54,7 @@ const clientSchema = z.object(baseSchema);
 
 const professionalSchema = z.object({
   ...baseSchema,
-  category: z.string().min(1, 'Debes seleccionar un oficio.'),
+  localidad: z.string().min(1, 'Debes seleccionar una localidad.'),
 });
 
 type ClientFormValues = z.infer<typeof clientSchema>;
@@ -74,16 +74,15 @@ export default function SignupPage() {
 
   const professionalForm = useForm<ProfessionalFormValues>({
     resolver: zodResolver(professionalSchema),
-    defaultValues: { fullName: '', email: '', password: '', category: '', terms: false },
+    defaultValues: { fullName: '', email: '', password: '', localidad: '', terms: false },
   });
 
   const activeForm = accountType === 'client' ? clientForm : professionalForm;
 
   const handleAccountTypeChange = (newType: string) => {
     setAccountType(newType);
-    // Reiniciar ambos formularios y sus casillas de términos y condiciones
     clientForm.reset({ fullName: '', email: '', password: '', terms: false });
-    professionalForm.reset({ fullName: '', email: '', password: '', category: '', terms: false });
+    professionalForm.reset({ fullName: '', email: '', password: '', localidad: '', terms: false });
   }
 
 
@@ -91,14 +90,11 @@ export default function SignupPage() {
     setIsLoading(true);
     
     try {
-      // 1. Create user in Firebase Auth
       const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
       const user = userCredential.user;
 
-      // 2. Update Firebase Auth profile
       await updateProfile(user, { displayName: data.fullName });
 
-      // 3. Prepare user data for Firestore
       const isProfessional = accountType === 'professional';
       const userData: {
         name: string;
@@ -113,23 +109,22 @@ export default function SignupPage() {
         role: isProfessional ? 'professional' : 'client',
         registrationDate: serverTimestamp(),
         isActive: true,
-        photoUrl: '', // Default empty photo
+        photoUrl: '',
       };
 
-      // 4. Save user data to 'users' collection in Firestore
       await setDoc(doc(db, 'users', user.uid), userData);
 
-      // 5. If professional, save additional details
       if (isProfessional) {
         const professionalData = data as ProfessionalFormValues;
         const professionalDetails = {
           name: professionalData.fullName,
           email: professionalData.email,
+          localidad: professionalData.localidad,
           description: '',
           specialties: [],
           avgRating: 0,
           totalReviews: 0,
-          categoryIds: professionalData.category ? [Number(professionalData.category)] : [],
+          categoryIds: [64], // Hardcodeado a Cerrajería
           isVerified: false,
           subscription: {
             tier: 'standard',
@@ -145,10 +140,9 @@ export default function SignupPage() {
       
       toast({
         title: "¡Cuenta Creada!",
-        description: `Tu cuenta de ${accountType === 'client' ? 'cliente' : 'profesional'} ha sido creada exitosamente.`,
+        description: `Tu cuenta de ${accountType === 'client' ? 'cliente' : 'cerrajero'} ha sido creada exitosamente.`,
       });
 
-      // 6. Redirect user after signup
       if (isProfessional) {
         router.push('/dashboard/profile');
       } else {
@@ -224,7 +218,7 @@ export default function SignupPage() {
               >
                 <TabsList className="grid w-full grid-cols-2">
                   <TabsTrigger value="client">Soy Cliente</TabsTrigger>
-                  <TabsTrigger value="professional">Soy Profesional</TabsTrigger>
+                  <TabsTrigger value="professional">Soy Cerrajero</TabsTrigger>
                 </TabsList>
                 <TabsContent value="client" className="mt-6">
                   <div className="space-y-4">
@@ -300,20 +294,20 @@ export default function SignupPage() {
                       />
                       <FormField
                         control={professionalForm.control}
-                        name="category"
+                        name="localidad"
                         render={({ field }) => (
                           <FormItem>
-                            <FormLabel>Oficio principal</FormLabel>
+                            <FormLabel>Tu localidad principal</FormLabel>
                             <Select onValueChange={field.onChange} defaultValue={field.value}>
                               <FormControl>
                                 <SelectTrigger>
-                                  <SelectValue placeholder="Selecciona tu oficio" />
+                                  <SelectValue placeholder="Selecciona tu localidad" />
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
-                                {CATEGORIES.map((category) => (
-                                  <SelectItem key={category.id} value={String(category.id)}>
-                                    {category.name}
+                                {LOCALIDADES_ARGENTINA.map((localidad) => (
+                                  <SelectItem key={localidad.slug} value={localidad.slug}>
+                                    {localidad.name}
                                   </SelectItem>
                                 ))}
                               </SelectContent>

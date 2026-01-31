@@ -3,10 +3,10 @@
 'use client';
 
 import { useParams } from 'next/navigation';
-import { CATEGORIES } from '@/lib/data';
+import { CATEGORIES, LOCALIDADES_ARGENTINA } from '@/lib/data';
 import ProfessionalCard from '@/components/professionals/professional-card';
 import { Button } from '@/components/ui/button';
-import { ListFilter, Loader2, Sparkles } from 'lucide-react';
+import { ListFilter, Loader2, Sparkles, KeyRound } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -27,9 +27,12 @@ import {
 } from '@/components/ui/carousel';
 import Autoplay from "embla-carousel-autoplay"
 
+// NOTA: Para completar la transformación, deberías renombrar esta carpeta de [categoryName] a [localidad].
+// He adaptado el código para que funcione con el parámetro 'localidad', pero el cambio de nombre debe hacerse manualmente.
+
 const PAGE_SIZE = 12;
 
-type SortType = 'rating' | 'verified' | 'availability' | 'clicks';
+type SortType = 'clicks' | 'rating' | 'verified' | 'availability';
 
 const isAvailableNow = (schedule?: Schedule[]): boolean => {
   if (!schedule) return false;
@@ -56,22 +59,11 @@ const isAvailableNow = (schedule?: Schedule[]): boolean => {
   return now >= openTime && now <= closeTime;
 };
 
-// Función para normalizar strings: minúsculas y sin acentos.
-const normalizeString = (str: string): string => {
-  return str
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
-};
-
 export default function CategoryPage() {
   const params = useParams();
   
-  // Decodificamos la URL y la normalizamos para la búsqueda
-  const categorySlug = useMemo(
-    () => normalizeString(decodeURIComponent(params.categoryName as string).replace(/-/g, ' ')),
-    [params.categoryName]
-  );
+  // El parámetro de la URL ahora es 'localidad', no 'categoryName'
+  const localidadSlug = params.categoryName as string;
   
   const [allProfessionals, setAllProfessionals] = useState<Professional[]>([]);
   const [loading, setLoading] = useState(true);
@@ -79,13 +71,12 @@ export default function CategoryPage() {
   const [sortBy, setSortBy] = useState<SortType>('clicks');
   const { toast } = useToast();
 
-  const category = useMemo(
-    // Comparamos los nombres normalizados para evitar errores con acentos o mayúsculas.
-    () => CATEGORIES.find((c) => normalizeString(c.name) === categorySlug),
-    [categorySlug]
+  const localidad = useMemo(
+    () => LOCALIDADES_ARGENTINA.find((l) => l.slug === localidadSlug),
+    [localidadSlug]
   );
   
-  const categoryName = category?.name || categorySlug.replace(/\b\w/g, l => l.toUpperCase());
+  const localidadName = localidad?.name || localidadSlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
 
   useEffect(() => {
     const fetchProfessionals = async () => {
@@ -108,18 +99,18 @@ export default function CategoryPage() {
     fetchProfessionals();
   }, [toast]);
 
-  const professionalsInCategory = useMemo(() => {
-    if (!category) return [];
-    return allProfessionals.filter(p => p.isActive && Array.isArray(p.categoryIds) && p.categoryIds.includes(category.id));
-  }, [allProfessionals, category]);
+  const professionalsInLocalidad = useMemo(() => {
+    if (!localidad) return [];
+    return allProfessionals.filter(p => p.localidad === localidad.slug);
+  }, [allProfessionals, localidad]);
 
   const featuredProfessionals = useMemo(() => {
-      return professionalsInCategory.filter(p => p.isFeatured);
-  }, [professionalsInCategory]);
+      return professionalsInLocalidad.filter(p => p.isFeatured);
+  }, [professionalsInLocalidad]);
 
   const regularProfessionals = useMemo(() => {
-      return professionalsInCategory.filter(p => !p.isFeatured);
-  }, [professionalsInCategory]);
+      return professionalsInLocalidad.filter(p => !p.isFeatured);
+  }, [professionalsInLocalidad]);
   
 
   const sortedRegularProfessionals = useMemo(() => {
@@ -146,6 +137,7 @@ export default function CategoryPage() {
         break;
       case 'clicks':
       default:
+        // Ordena por whatsappClicks de menor a mayor
         sorted.sort((a, b) => (a.whatsappClicks || 0) - (b.whatsappClicks || 0));
         break;
     }
@@ -167,12 +159,12 @@ export default function CategoryPage() {
     setCurrentPage(1);
   }
 
-  if (!category && !loading) {
+  if (!localidad && !loading) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <h1 className="text-2xl font-bold">Categoría no encontrada</h1>
+        <h1 className="text-2xl font-bold">Localidad no encontrada</h1>
         <p className="text-muted-foreground mt-2">
-          No pudimos encontrar la categoría de servicio que estás buscando.
+          No pudimos encontrar la localidad que estás buscando.
         </p>
       </div>
     );
@@ -180,32 +172,34 @@ export default function CategoryPage() {
 
   return (
     <div className="container mx-auto px-4 py-12 md:px-6">
-      {category && (
-        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
-          <div className="flex items-center gap-3 mb-4 sm:mb-0">
-            <div className="bg-primary/10 p-3 rounded-full">
-              <category.icon className="h-8 w-8 text-primary" />
-            </div>
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">
-              {category.name}
-            </h1>
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
+        <div className="flex items-center gap-3 mb-4 sm:mb-0">
+          <div className="bg-primary/10 p-3 rounded-full">
+            <KeyRound className="h-8 w-8 text-primary" />
           </div>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline">
-                <ListFilter className="mr-2" />
-                Ordenar por
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent>
-              <DropdownMenuItem onSelect={() => handleSortChange('rating')}>Mejor Rankeados</DropdownMenuItem>
-              <DropdownMenuItem onSelect={() => handleSortChange('verified')}>Solo Verificados</DropdownMenuItem>
-              <DropdownMenuItem onSelect={() => handleSortChange('availability')}>Disponibles Ahora</DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <div>
+            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">
+              Cerrajeros en {localidadName}
+            </h1>
+             <p className="text-muted-foreground">Encontrá profesionales de confianza en tu zona.</p>
+          </div>
         </div>
-      )}
+
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <Button variant="outline">
+              <ListFilter className="mr-2" />
+              Ordenar por
+            </Button>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuItem onSelect={() => handleSortChange('clicks')}>Popularidad</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => handleSortChange('rating')}>Mejor Rankeados</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => handleSortChange('verified')}>Solo Verificados</DropdownMenuItem>
+            <DropdownMenuItem onSelect={() => handleSortChange('availability')}>Disponibles Ahora</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
 
       {loading ? (
         <div className="flex justify-center items-center h-64">
@@ -217,7 +211,7 @@ export default function CategoryPage() {
             <section className="mb-12">
               <h2 className="text-xl font-bold font-headline mb-4 flex items-center gap-2">
                 <Sparkles className="w-5 h-5 text-primary"/>
-                Profesionales Recomendados
+                Cerrajeros Recomendados
               </h2>
                {featuredProfessionals.length > 1 ? (
                  <Carousel 
@@ -249,13 +243,13 @@ export default function CategoryPage() {
               ))}
             </div>
           ) : (
-             (professionalsInCategory.length === 0) && (
+             (professionalsInLocalidad.length === 0) && (
                  <div className="flex flex-col items-center justify-center h-64 border-2 border-dashed rounded-lg text-center p-4">
                     <p className="text-lg font-medium text-muted-foreground">
-                        {`Aún no hay profesionales en "${category?.name}".`}
+                        {`Aún no hay cerrajeros en "${localidadName}".`}
                     </p>
                     <p className="text-sm text-muted-foreground mt-2">
-                        ¡Sé el primero en registrarte en esta categoría!
+                        ¡Sé el primero en registrarte en esta localidad!
                     </p>
                 </div>
              )

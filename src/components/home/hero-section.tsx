@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Suspense } from 'react';
@@ -28,10 +29,10 @@ export default function HeroSection() {
 
       <div className="relative z-10 container mx-auto text-center px-4">
         <h1 className="text-3xl md:text-4xl font-bold font-headline mb-4">
-          Acá está la persona que necesitas hoy!
+          Acá está el cerrajero que necesitás hoy
         </h1>
         <p className="mb-6 text-base md:text-lg">
-          Busca, elegí y contactate ya. Listos para ayudarte con lo que requieras
+          Buscá por localidad y encontrá al profesional más cercano.
         </p>
 
         <SearchForm />

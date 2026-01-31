@@ -1,3 +1,4 @@
+
 'use client';
 
 import { Facebook, Instagram, Phone, Mail } from 'lucide-react';
@@ -54,25 +55,25 @@ export function Footer() {
                 <p className="font-bold text-foreground">Localidades</p>
                 <nav className="mt-4 flex flex-col space-y-2 text-sm">
                   <Link
-                    href="/cerrajeros/caba"
+                    href="/servicios/caba"
                     className="text-muted-foreground hover:text-primary"
                   >
                     CABA
                   </Link>
                   <Link
-                    href="/cerrajeros/la-plata"
+                    href="/servicios/la-plata"
                     className="text-muted-foreground hover:text-primary"
                   >
                     La Plata
                   </Link>
                   <Link
-                    href="/cerrajeros/mar-del-plata"
+                    href="/servicios/mar-del-plata"
                     className="text-muted-foreground hover:text-primary"
                   >
                     Mar del Plata
                   </Link>
                   <Link
-                    href="/cerrajeros"
+                    href="/servicios"
                     className="text-muted-foreground hover:text-primary"
                   >
                     Ver todas

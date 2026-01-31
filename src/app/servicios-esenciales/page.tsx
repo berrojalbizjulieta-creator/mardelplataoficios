@@ -14,7 +14,7 @@ const CategoryCard = ({ category }: { category: (typeof CATEGORIES)[0] & { subti
     if (!category) return null;
     return (
         <Link 
-            href={`/cerrajeros`} // Se redirige a la página principal de cerrajeros
+            href={`/servicios`} // Se redirige a la página principal de cerrajeros
             className="group"
         >
             <Card className="relative overflow-hidden shadow-lg transition-all duration-300 group-hover:shadow-xl">
@@ -49,7 +49,7 @@ export default function EssentialServicesPage() {
           </p>
           <div className="mt-8">
               <Button asChild size="lg">
-              <Link href="/cerrajeros">Contratá un Cerrajero</Link>
+              <Link href="/servicios">Contratá un Cerrajero</Link>
               </Button>
           </div>
       </div>

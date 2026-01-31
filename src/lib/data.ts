@@ -111,7 +111,7 @@ export const BANNERS: Banner[] = [
     imageUrl: 'https://i.pinimg.com/1200x/e2/41/5e/e2415e5d7e8e6e804e007d4147a9a04b.jpg',
     imageHint: 'locksmith tools',
     buttonText: 'Buscar Cerrajeros',
-    buttonLink: '/cerrajeros',
+    buttonLink: '/servicios',
   },
   {
     id: 2,
@@ -120,7 +120,7 @@ export const BANNERS: Banner[] = [
     imageUrl: 'https://i.pinimg.com/1200x/ce/30/e6/ce30e6fa6063da846fedd81b4d6d5567.jpg',
     imageHint: 'security lock',
     buttonText: 'Ver Especialistas',
-    buttonLink: '/cerrajeros',
+    buttonLink: '/servicios',
   },
 ];
 

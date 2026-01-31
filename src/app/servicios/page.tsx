@@ -45,7 +45,7 @@ function SearchableLocalidades() {
         {filteredLocalidades.map((localidad) => (
           <Link
             key={localidad.slug}
-            href={`/cerrajeros/${localidad.slug}`}
+            href={`/servicios/${localidad.slug}`}
             className="cursor-pointer group"
           >
             <Card className="hover:shadow-lg transition-all">

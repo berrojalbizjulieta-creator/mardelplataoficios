@@ -30,7 +30,7 @@ export default function CategoriesGrid() {
           {popularLocalidades.map((localidad) => (
              <Link
               key={localidad.slug}
-              href={`/cerrajeros/${localidad.slug}`}
+              href={`/servicios/${localidad.slug}`}
               className="cursor-pointer group"
             >
               <Card
@@ -48,7 +48,7 @@ export default function CategoriesGrid() {
             </Link>
           ))}
            <Link
-              href="/cerrajeros"
+              href="/servicios"
               className="cursor-pointer group"
             >
               <Card

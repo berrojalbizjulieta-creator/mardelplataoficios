@@ -23,8 +23,7 @@ import AdminNotifications from '../admin/admin-notifications';
 
 const navLinks = [
   { href: '/', label: 'Inicio' },
-  { href: '/servicios', label: 'Servicios' },
-  { href: '/busco-un-profesional', label: 'Busco a alguien que...' },
+  { href: '/servicios', label: 'Localidades' },
   { href: '/sobre-nosotros', label: 'Sobre Nosotros' },
   { href: '/contacto', label: 'Contacto' },
 ];

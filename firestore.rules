@@ -44,16 +44,6 @@ service cloud.firestore {
       // Nadie puede borrar reseñas directamente.
       allow delete: if false;
     }
-
-    // Reglas para la colección 'jobRequests'
-    match /jobRequests/{jobId} {
-      // Cualquiera puede leer las solicitudes de trabajo.
-      allow read: if true;
-      // Un usuario autenticado puede crear una solicitud.
-      allow create: if request.auth != null;
-      // Solo el creador de la solicitud o un admin pueden actualizarla.
-      allow update: if resource.data.clientId == request.auth.uid || esAdmin();
-    }
     
     // Reglas para la colección de banners publicitarios 'adBanners'
     match /adBanners/{bannerId} {

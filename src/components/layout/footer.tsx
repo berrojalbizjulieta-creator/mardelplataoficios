@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import { Facebook, Instagram, Phone, Mail } from 'lucide-react';
@@ -152,7 +150,7 @@ export function Footer() {
 
           <div className="mt-10 border-t border-border pt-6 text-center text-sm text-muted-foreground">
             <p>
-              &copy; {new Date().getFullYear()} MarDelPlataOficios. Todos los
+              &copy; {new Date().getFullYear()} Cerrajeros Argentinos. Todos los
               derechos reservados.
             </p>
           </div>

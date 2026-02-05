@@ -19,7 +19,7 @@ export default function HeroSection() {
     <section 
       className="relative w-full h-[400px] md:h-[500px] flex items-center justify-center text-white" 
       style={{ 
-        backgroundImage: "url('https://storage.googleapis.com/studiogpt-test-project.appspot.com/7d7a5223-936a-49a3-b14e-d6980a3c267b.png')", 
+        backgroundImage: "url('https://i.ibb.co/L9BxtgR/f-Deyqgf.jpg')", 
         backgroundSize: 'cover', 
         backgroundPosition: 'center top' 
       }}

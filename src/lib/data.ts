@@ -28,14 +28,14 @@ export const defaultSchedule: Schedule[] = [
 ];
 
 export const LOCALIDADES_ARGENTINA = [
-  { name: 'CABA', slug: 'caba' },
-  { name: 'La Plata', slug: 'la-plata' },
-  { name: 'Mar del Plata', slug: 'mar-del-plata' },
-  { name: 'Rosario', slug: 'rosario' },
-  { name: 'Córdoba Capital', slug: 'cordoba-capital' },
-  { name: 'Mendoza Capital', slug: 'mendoza-capital' },
-  { name: 'Bahía Blanca', slug: 'bahia-blanca' },
-  { name: 'Tandil', slug: 'tandil' },
+  { name: 'CABA', slug: 'caba', imageUrl: 'https://images.unsplash.com/photo-1596701552309-84d728514167?q=80&w=1935&auto=format&fit=crop' },
+  { name: 'La Plata', slug: 'la-plata', imageUrl: 'https://images.unsplash.com/photo-1581624633499-c3b69ec402a7?q=80&w=1974&auto=format&fit=crop' },
+  { name: 'Mar del Plata', slug: 'mar-del-plata', imageUrl: 'https://images.unsplash.com/photo-1580221374567-3c3995cf59f5?q=80&w=2070&auto=format&fit=crop' },
+  { name: 'Rosario', slug: 'rosario', imageUrl: 'https://images.unsplash.com/photo-1582236143924-c15c889006a8?q=80&w=1974&auto=format&fit=crop' },
+  { name: 'Córdoba Capital', slug: 'cordoba-capital', imageUrl: 'https://images.unsplash.com/photo-1599321345480-161d8f168122?q=80&w=2070&auto=format&fit=crop' },
+  { name: 'Mendoza Capital', slug: 'mendoza-capital', imageUrl: 'https://images.unsplash.com/photo-1589984622039-0158a085c885?q=80&w=1974&auto=format&fit=crop' },
+  { name: 'Bahía Blanca', slug: 'bahia-blanca', imageUrl: 'https://px.cdn.lanueva.com/022023/1677153888501/portal%20otra.jpg?cw=807' },
+  { name: 'Tandil', slug: 'tandil', imageUrl: 'https://images.unsplash.com/photo-1621295304675-a4b513437184?q=80&w=2070&auto=format&fit=crop' },
 ];
 
 export const CATEGORIES: Category[] = [

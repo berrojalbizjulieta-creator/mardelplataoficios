@@ -77,6 +77,7 @@ export default function CategoryPage() {
   );
   
   const localidadName = localidad?.name || localidadSlug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+  const heroImage = (localidad as any)?.imageUrl || 'https://i.postimg.cc/XJTjx2f9/f22914a0-7694-4231-8b13-9ae697dc1b9e.png';
 
   useEffect(() => {
     const fetchProfessionals = async () => {
@@ -171,113 +172,118 @@ export default function CategoryPage() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-12 md:px-6">
-      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8">
-        <div className="flex items-center gap-3 mb-4 sm:mb-0">
-          <div className="bg-primary/10 p-3 rounded-full">
-            <KeyRound className="h-8 w-8 text-primary" />
-          </div>
-          <div>
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl font-headline">
-              Cerrajeros en {localidadName}
-            </h1>
-             <p className="text-muted-foreground">Encontrá profesionales de confianza en tu zona.</p>
-          </div>
+    <>
+      <section 
+        className="relative w-full h-80 flex items-center justify-center text-white bg-center bg-cover"
+        style={{ backgroundImage: `url(${heroImage})` }}
+      >
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="relative z-10 container mx-auto text-center px-4">
+          <h1 className="text-4xl md:text-5xl font-bold font-headline mb-4">
+            Cerrajeros en {localidadName}
+          </h1>
+          <p className="mb-6 text-lg md:text-xl max-w-2xl mx-auto">
+            Encontrá profesionales de confianza en tu zona.
+          </p>
         </div>
+      </section>
 
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline">
-              <ListFilter className="mr-2" />
-              Ordenar por
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem onSelect={() => handleSortChange('clicks')}>Popularidad</DropdownMenuItem>
-            <DropdownMenuItem onSelect={() => handleSortChange('rating')}>Mejor Rankeados</DropdownMenuItem>
-            <DropdownMenuItem onSelect={() => handleSortChange('verified')}>Solo Verificados</DropdownMenuItem>
-            <DropdownMenuItem onSelect={() => handleSortChange('availability')}>Disponibles Ahora</DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
+      <div className="container mx-auto px-4 py-12 md:px-6">
+         <div className="flex flex-col sm:flex-row justify-end items-center mb-8">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline">
+                  <ListFilter className="mr-2" />
+                  Ordenar por
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent>
+                <DropdownMenuItem onSelect={() => handleSortChange('clicks')}>Popularidad</DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => handleSortChange('rating')}>Mejor Rankeados</DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => handleSortChange('verified')}>Solo Verificados</DropdownMenuItem>
+                <DropdownMenuItem onSelect={() => handleSortChange('availability')}>Disponibles Ahora</DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+         </div>
+
+        {loading ? (
+          <div className="flex justify-center items-center h-64">
+            <Loader2 className="animate-spin h-8 w-8 text-primary" />
+          </div>
+        ) : (
+          <>
+            {featuredProfessionals.length > 0 && (
+              <section className="mb-12">
+                <h2 className="text-xl font-bold font-headline mb-4 flex items-center gap-2">
+                  <Sparkles className="w-5 h-5 text-primary"/>
+                  Cerrajeros Recomendados
+                </h2>
+                {featuredProfessionals.length > 1 ? (
+                  <Carousel 
+                      opts={{ align: "start", loop: true }}
+                      plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
+                      className="w-full pt-4 -mt-4" // Padding top to make space for badge
+                    >
+                      <CarouselContent>
+                          {featuredProfessionals.map((prof) => (
+                              <CarouselItem key={prof.id}>
+                                  <ProfessionalCard professional={prof} isFeatured={true} />
+                              </CarouselItem>
+                          ))}
+                      </CarouselContent>
+                  </Carousel>
+                ) : (
+                  <ProfessionalCard professional={featuredProfessionals[0]} isFeatured={true} />
+                )}
+              </section>
+            )}
+
+            {currentRegularProfessionals.length > 0 ? (
+              <div className="space-y-6">
+                {currentRegularProfessionals.map((professional) => (
+                  <ProfessionalCard
+                    key={professional.id as string}
+                    professional={professional}
+                  />
+                ))}
+              </div>
+            ) : (
+              (professionalsInLocalidad.length === 0) && (
+                  <div className="flex flex-col items-center justify-center h-64 border-2 border-dashed rounded-lg text-center p-4">
+                      <p className="text-lg font-medium text-muted-foreground">
+                          {`Aún no hay cerrajeros en "${localidadName}".`}
+                      </p>
+                      <p className="text-sm text-muted-foreground mt-2">
+                          ¡Sé el primero en registrarte en esta localidad!
+                      </p>
+                  </div>
+              )
+            )}
+
+            {totalPages > 1 && (
+              <div className="mt-12 flex justify-center items-center gap-4">
+                <Button
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  disabled={currentPage === 1}
+                  variant="outline"
+                >
+                  Anterior
+                </Button>
+                <span className="text-sm text-muted-foreground">
+                  Página {currentPage} de {totalPages}
+                </span>
+                <Button
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  disabled={currentPage === totalPages}
+                  variant="outline"
+                >
+                  Siguiente
+                </Button>
+              </div>
+            )}
+          </>
+        )}
       </div>
-
-      {loading ? (
-        <div className="flex justify-center items-center h-64">
-          <Loader2 className="animate-spin h-8 w-8 text-primary" />
-        </div>
-      ) : (
-        <>
-          {featuredProfessionals.length > 0 && (
-            <section className="mb-12">
-              <h2 className="text-xl font-bold font-headline mb-4 flex items-center gap-2">
-                <Sparkles className="w-5 h-5 text-primary"/>
-                Cerrajeros Recomendados
-              </h2>
-               {featuredProfessionals.length > 1 ? (
-                 <Carousel 
-                    opts={{ align: "start", loop: true }}
-                    plugins={[Autoplay({ delay: 5000, stopOnInteraction: true })]}
-                    className="w-full pt-4 -mt-4" // Padding top to make space for badge
-                  >
-                    <CarouselContent>
-                        {featuredProfessionals.map((prof) => (
-                            <CarouselItem key={prof.id}>
-                                <ProfessionalCard professional={prof} isFeatured={true} />
-                            </CarouselItem>
-                        ))}
-                    </CarouselContent>
-                </Carousel>
-               ) : (
-                <ProfessionalCard professional={featuredProfessionals[0]} isFeatured={true} />
-               )}
-            </section>
-          )}
-
-          {currentRegularProfessionals.length > 0 ? (
-            <div className="space-y-6">
-              {currentRegularProfessionals.map((professional) => (
-                <ProfessionalCard
-                  key={professional.id as string}
-                  professional={professional}
-                />
-              ))}
-            </div>
-          ) : (
-             (professionalsInLocalidad.length === 0) && (
-                 <div className="flex flex-col items-center justify-center h-64 border-2 border-dashed rounded-lg text-center p-4">
-                    <p className="text-lg font-medium text-muted-foreground">
-                        {`Aún no hay cerrajeros en "${localidadName}".`}
-                    </p>
-                    <p className="text-sm text-muted-foreground mt-2">
-                        ¡Sé el primero en registrarte en esta localidad!
-                    </p>
-                </div>
-             )
-          )}
-
-          {totalPages > 1 && (
-            <div className="mt-12 flex justify-center items-center gap-4">
-              <Button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                variant="outline"
-              >
-                Anterior
-              </Button>
-              <span className="text-sm text-muted-foreground">
-                Página {currentPage} de {totalPages}
-              </span>
-              <Button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                variant="outline"
-              >
-                Siguiente
-              </Button>
-            </div>
-          )}
-        </>
-      )}
-    </div>
+    </>
   );
 }

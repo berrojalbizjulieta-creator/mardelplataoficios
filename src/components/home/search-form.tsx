@@ -115,7 +115,7 @@ export default function SearchForm() {
             type="text"
             value={searchValue}
             onChange={handleInputChange}
-            placeholder="Ej: 'plomero', 'electricista' o 'arreglar una canilla'"
+            placeholder="Bahía Blanca, Necochea, Tandil..."
             className="flex-1 text-black"
             autoComplete="off"
             onFocus={() => {

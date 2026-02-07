@@ -35,7 +35,7 @@ export const LOCALIDADES_ARGENTINA = [
   { name: 'Córdoba Capital', slug: 'cordoba-capital', imageUrl: 'https://images.unsplash.com/photo-1599321345480-161d8f168122?q=80&w=2070&auto=format&fit=crop' },
   { name: 'Mendoza Capital', slug: 'mendoza-capital', imageUrl: 'https://images.unsplash.com/photo-1589984622039-0158a085c885?q=80&w=1974&auto=format&fit=crop' },
   { name: 'Bahía Blanca', slug: 'bahia-blanca', imageUrl: 'https://px.cdn.lanueva.com/022023/1677153888501/portal%20otra.jpg?cw=807' },
-  { name: 'Tandil', slug: 'tandil', imageUrl: 'https://i.postimg.cc/s24xPF64/images-(1).jpg' },
+  { name: 'Tandil', slug: 'tandil', imageUrl: 'https://i.postimg.cc/RVwRHd5J/a5f70bd2-a00c-4c37-8e1a-64bae1549844-(1).webp' },
 ];
 
 export const CATEGORIES: Category[] = [

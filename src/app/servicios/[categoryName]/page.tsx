@@ -175,7 +175,7 @@ export default function CategoryPage() {
         className="relative w-full h-80 flex items-center justify-center text-white bg-center bg-cover"
         style={{ 
           backgroundImage: `url("${heroImage}")`,
-          backgroundPosition: 'center center',
+          backgroundPosition: 'left center',
         }}
       >
         <div className="absolute inset-0 bg-black/60"></div>

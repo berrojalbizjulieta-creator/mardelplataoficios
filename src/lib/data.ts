@@ -33,8 +33,8 @@ export const LOCALIDADES_ARGENTINA = [
   { name: 'Mar del Plata', slug: 'mar-del-plata', imageUrl: 'https://i.postimg.cc/wjSjYqPF/82a2fc89-c29b-4645-89b6-31a6990324a8.png' },
   { name: 'Rosario', slug: 'rosario', imageUrl: 'https://images.unsplash.com/photo-1582236143924-c15c889006a8?q=80&w=1974&auto=format&fit=crop' },
   { name: 'Córdoba Capital', slug: 'cordoba-capital', imageUrl: 'https://images.unsplash.com/photo-1599321345480-161d8f168122?q=80&w=2070&auto=format&fit=crop' },
-  { name: 'Mendoza Capital', slug: 'mendoza-capital', imageUrl: 'https://images.unsplash.com/photo-1589984622039-0158a085c885?q=80&w=1974&auto=format&fit=crop' },
-  { name: 'Bahía Blanca', slug: 'bahia-blanca', imageUrl: 'https://px.cdn.lanueva.com/022023/1677153888501/portal%20otra.jpg?cw=807' },
+  { name: 'Mendoza Capital', slug: 'mendoza-capital', imageUrl: 'https://images.unsplash.com/photo-1589984622039-0158a085c7d85?q=80&w=1974&auto=format&fit=crop' },
+  { name: 'Bahía Blanca', slug: 'bahia-blanca', imageUrl: 'https://images.unsplash.com/photo-1629815042231-15024765360a?q=80&w=1932&auto=format&fit=crop' },
   { name: 'Tandil', slug: 'tandil', imageUrl: 'https://i.postimg.cc/RVwRHd5J/a5f70bd2-a00c-4c37-8e1a-64bae1549844-(1).webp' },
 ];
 

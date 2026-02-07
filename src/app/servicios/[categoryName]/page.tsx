@@ -174,7 +174,7 @@ export default function CategoryPage() {
   return (
     <>
       <section 
-        className="relative w-full h-80 flex items-center justify-center text-white bg-center bg-cover"
+        className="relative w-full h-80 flex items-center justify-center text-white bg-top bg-cover"
         style={{ backgroundImage: `url(${heroImage})` }}
       >
         <div className="absolute inset-0 bg-black/60"></div>

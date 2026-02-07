@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
@@ -7,9 +8,8 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import Link from 'next/link';
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
-import { Star } from 'lucide-react';
+import { Star, MapPin } from 'lucide-react';
 import { Separator } from '../ui/separator';
-import Fuse from 'fuse.js';
 
 interface SearchResult {
   id: number;
@@ -19,10 +19,15 @@ interface SearchResult {
   avgRating: number;
 }
 
+interface LocalitySuggestion {
+  name: string;
+  slug: string;
+}
+
 export default function SearchForm() {
   const [searchValue, setSearchValue] = useState('');
-  const [results, setResults] = useState<SearchResult[]>([]);
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [professionals, setProfessionals] = useState<SearchResult[]>([]);
+  const [localities, setLocalities] = useState<LocalitySuggestion[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   
@@ -49,26 +54,26 @@ export default function SearchForm() {
 
     try {
       // Fetch both professionals and suggestions in parallel
-      const [profRes, sugRes] = await Promise.all([
+      const [profRes, locRes] = await Promise.all([
         fetch(`/api/search?q=${encodeURIComponent(query)}`),
-        fetch(`/api/sugerencia?q=${encodeURIComponent(query)}`)
+        fetch(`/api/localidades?q=${encodeURIComponent(query)}`)
       ]);
 
-      if (!profRes.ok || !sugRes.ok) {
+      if (!profRes.ok || !locRes.ok) {
         throw new Error('Error en la respuesta del servidor');
       }
 
-      const professionals: SearchResult[] = await profRes.json();
-      const suggestionData: { suggestedTrades: string[] } = await sugRes.json();
+      const professionalsData: SearchResult[] = await profRes.json();
+      const localityData: { suggestions: LocalitySuggestion[] } = await locRes.json();
       
-      setResults(professionals);
-      setSuggestions(suggestionData.suggestedTrades || []);
+      setProfessionals(professionalsData);
+      setLocalities(localityData.suggestions || []);
 
       setIsDropdownOpen(true);
     } catch (e: any) {
       console.error('Error fetching data:', e);
-      setResults([]);
-      setSuggestions([]);
+      setProfessionals([]);
+      setLocalities([]);
       setIsDropdownOpen(true);
     } finally {
       setIsLoading(false);
@@ -81,9 +86,9 @@ export default function SearchForm() {
 
     if (debounceRef.current) clearTimeout(debounceRef.current);
 
-    if (value.trim().length < 3) {
-      setResults([]);
-      setSuggestions([]);
+    if (value.trim().length < 2) { // Lowered threshold for better experience
+      setProfessionals([]);
+      setLocalities([]);
       setIsDropdownOpen(false);
       return;
     }
@@ -98,14 +103,22 @@ export default function SearchForm() {
     if (!searchValue) return;
     setIsDropdownOpen(false);
     
-    router.push(`/servicios?search=${encodeURIComponent(searchValue)}`);
+    // Instead of navigating to a generic search page,
+    // let's check if the search term matches a locality first.
+    const directMatch = localities.find(loc => loc.name.toLowerCase() === searchValue.toLowerCase());
+    if (directMatch) {
+      router.push(`/servicios/${directMatch.slug}`);
+    } else {
+      // Fallback to a general search if needed, or just let the user pick from dropdown.
+      // For now, let's just keep the dropdown open.
+      fetchData(searchValue);
+    }
   };
 
-  const handleSuggestionClick = (suggestion: string) => {
-    setSearchValue(suggestion);
+  const handleSuggestionClick = (locality: LocalitySuggestion) => {
+    setSearchValue(locality.name);
     setIsDropdownOpen(false);
-    const categorySlug = encodeURIComponent(suggestion.toLowerCase().replace(/ y /g, '-').replace(/ /g, '-'));
-    router.push(`/servicios/${categorySlug}`);
+    router.push(`/servicios/${locality.slug}`);
   }
 
   return (
@@ -119,7 +132,7 @@ export default function SearchForm() {
             className="flex-1 text-black"
             autoComplete="off"
             onFocus={() => {
-              if (searchValue.length > 2) setIsDropdownOpen(true);
+              if (searchValue.length > 1) setIsDropdownOpen(true);
             }}
           />
           <Button
@@ -141,26 +154,27 @@ export default function SearchForm() {
               >
                 {isLoading && <li className="px-4 py-3 text-muted-foreground">Buscando...</li>}
                 
-                {!isLoading && suggestions.length > 0 && (
+                {!isLoading && localities.length > 0 && (
                    <>
-                    <li className="px-4 pt-3 pb-1 text-xs font-semibold text-muted-foreground uppercase">Sugerencias de Oficios</li>
-                    {suggestions.slice(0, 3).map((suggestion) => (
+                    <li className="px-4 pt-3 pb-1 text-xs font-semibold text-muted-foreground uppercase">Localidades</li>
+                    {localities.slice(0, 3).map((locality) => (
                       <li 
-                        key={suggestion} 
-                        className="px-4 py-2 cursor-pointer hover:bg-muted font-medium"
-                        onClick={() => handleSuggestionClick(suggestion)}
+                        key={locality.slug} 
+                        className="px-4 py-2 cursor-pointer hover:bg-muted font-medium flex items-center gap-2"
+                        onClick={() => handleSuggestionClick(locality)}
                       >
-                        en <span className='text-primary'>{suggestion}</span>
+                        <MapPin className="h-4 w-4 text-muted-foreground" />
+                        <span>{locality.name}</span>
                       </li>
                     ))}
-                    {results.length > 0 && <Separator />}
+                    {(professionals.length > 0) && <Separator />}
                   </>
                 )}
 
-                {!isLoading && results.length > 0 && (
+                {!isLoading && professionals.length > 0 && (
                   <>
                   <li className="px-4 pt-3 pb-1 text-xs font-semibold text-muted-foreground uppercase">Profesionales</li>
-                  {results.slice(0, 5).map((r) => (
+                  {professionals.slice(0, 4).map((r) => (
                     <li key={r.id}>
                         <Link href={`/profesional/${r.id}`} className="flex items-center gap-4 px-4 py-3 cursor-pointer hover:bg-muted" onClick={() => setIsDropdownOpen(false)}>
                             <Avatar>
@@ -181,7 +195,7 @@ export default function SearchForm() {
                  </>
                 )}
 
-                {!isLoading && results.length === 0 && suggestions.length === 0 && searchValue.length > 2 && (
+                {!isLoading && professionals.length === 0 && localities.length === 0 && searchValue.length > 1 && (
                     <li className="px-4 py-3 text-muted-foreground">No se encontraron resultados para "{searchValue}".</li>
                 )}
               </motion.ul>

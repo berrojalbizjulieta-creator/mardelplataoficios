@@ -30,7 +30,7 @@ export const defaultSchedule: Schedule[] = [
 export const LOCALIDADES_ARGENTINA = [
   { name: 'CABA', slug: 'caba', imageUrl: 'https://images.unsplash.com/photo-1596701552309-84d728514167?q=80&w=1935&auto=format&fit=crop' },
   { name: 'La Plata', slug: 'la-plata', imageUrl: 'https://images.unsplash.com/photo-1581624633499-c3b69ec402a7?q=80&w=1974&auto=format&fit=crop' },
-  { name: 'Mar del Plata', slug: 'mar-del-plata', imageUrl: 'https://i.postimg.cc/y81MbwvY/Whats-App-Image-2025-12-17-at-9-14-37-PM.jpg' },
+  { name: 'Mar del Plata', slug: 'mar-del-plata', imageUrl: 'https://i.postimg.cc/wjSjYqPF/82a2fc89-c29b-4645-89b6-31a6990324a8.png' },
   { name: 'Rosario', slug: 'rosario', imageUrl: 'https://images.unsplash.com/photo-1582236143924-c15c889006a8?q=80&w=1974&auto=format&fit=crop' },
   { name: 'Córdoba Capital', slug: 'cordoba-capital', imageUrl: 'https://images.unsplash.com/photo-1599321345480-161d8f168122?q=80&w=2070&auto=format&fit=crop' },
   { name: 'Mendoza Capital', slug: 'mendoza-capital', imageUrl: 'https://images.unsplash.com/photo-1589984622039-0158a085c885?q=80&w=1974&auto=format&fit=crop' },

@@ -1,5 +1,4 @@
 
-
 import {
   KeyRound,
   Wrench
@@ -34,7 +33,7 @@ export const LOCALIDADES_ARGENTINA = [
   { name: 'Rosario', slug: 'rosario', imageUrl: 'https://images.unsplash.com/photo-1582236143924-c15c889006a8?q=80&w=1974&auto=format&fit=crop' },
   { name: 'Córdoba Capital', slug: 'cordoba-capital', imageUrl: 'https://images.unsplash.com/photo-1599321345480-161d8f168122?q=80&w=2070&auto=format&fit=crop' },
   { name: 'Mendoza Capital', slug: 'mendoza-capital', imageUrl: 'https://images.unsplash.com/photo-1589984622039-0158a085c7d8?q=80&w=1974&auto=format&fit=crop' },
-  { name: 'Bahía Blanca', slug: 'bahia-blanca', imageUrl: 'https://i.postimg.cc/G3vR402j/images-(1).jpg' },
+  { name: 'Bahía Blanca', slug: 'bahia-blanca', imageUrl: 'https://i.postimg.cc/1tPHMNGs/1610115832666.jpg' },
   { name: 'Tandil', slug: 'tandil', imageUrl: 'https://i.postimg.cc/RVwRHd5J/a5f70bd2-a00c-4c37-8e1a-64bae1549844-(1).webp' },
 ];
 

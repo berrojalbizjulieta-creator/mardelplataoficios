@@ -174,7 +174,7 @@ export default function CategoryPage() {
       <section 
         className="relative w-full h-80 flex items-center justify-center text-white bg-center bg-cover"
         style={{ 
-          backgroundImage: `url(${heroImage})`,
+          backgroundImage: `url("${heroImage}")`,
           backgroundPosition: 'center center',
         }}
       >

@@ -1,4 +1,3 @@
-
 'use client';
 
 import {
@@ -8,10 +7,13 @@ import {
 } from '@/components/ui/card';
 import { LOCALIDADES_ARGENTINA } from '@/lib/data';
 import Link from 'next/link';
-import { Button } from '../ui/button';
 import { ArrowRight, MapPin } from 'lucide-react';
 
-const popularLocalidades = LOCALIDADES_ARGENTINA.slice(0, 5);
+const popularSlugs = ['bahia-blanca', 'mar-del-plata', 'la-plata', 'azul'];
+const popularLocalidades = popularSlugs
+  .map(slug => LOCALIDADES_ARGENTINA.find(loc => loc.slug === slug))
+  .filter(Boolean as <T>(x: T | undefined) => x is T);
+
 
 export default function CategoriesGrid() {
   return (
@@ -26,7 +28,7 @@ export default function CategoriesGrid() {
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
           {popularLocalidades.map((localidad) => (
              <Link
               key={localidad.slug}

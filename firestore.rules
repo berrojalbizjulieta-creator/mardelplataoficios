@@ -1,64 +1,58 @@
-
 rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-
-    // Función auxiliar para verificar si el usuario es administrador.
-    function esAdmin() {
-      return request.auth != null && request.auth.token.email == "berrojalbizjulieta@gmail.com";
+  
+    // --- Helper Functions ---
+    function isAdmin() {
+      return request.auth != null && request.auth.token.email == 'berrojalbizjulieta@gmail.com';
     }
 
-    // Reglas para la colección 'users'
+    // --- Collection Rules ---
+
     match /users/{userId} {
-      // Cualquiera puede crear una cuenta de usuario.
-      allow create: if true;
-      // Solo el propio usuario o un admin puede leer/actualizar sus datos.
-      allow read, update: if request.auth.uid == userId || esAdmin();
-      // Nadie puede borrar documentos de usuario directamente.
-      allow delete: if false;
+      allow read: if request.auth != null;
+      allow write: if request.auth.uid == userId || isAdmin();
     }
 
-    // Reglas para la colección 'professionalsDetails'
     match /professionalsDetails/{profId} {
-      // Cualquiera puede leer los perfiles de profesionales (perfil público).
       allow read: if true;
-      
-      // El propio profesional o un admin pueden crear o actualizar su perfil.
-      // ADEMÁS: Cualquier persona (incluso anónima) puede actualizar ÚNICAMENTE el campo `whatsappClicks`.
-      allow create: if request.auth.uid == profId || esAdmin();
-      allow update: if (request.auth.uid == profId || esAdmin()) || 
-                      (request.resource.data.diff(resource.data).affectedKeys().hasOnly(['whatsappClicks']));
+      allow create: if request.auth.uid == profId || isAdmin();
+      allow delete: if request.auth.uid == profId || isAdmin();
 
-      // Nadie puede borrar perfiles directamente.
-      allow delete: if false;
+      allow update: if
+        // Regla 1: dueño o admin
+        (request.auth.uid == profId || isAdmin()) ||
+
+        // Regla 2: permitir SOLO modificar whatsappClicks aun anónimo
+        (
+          request.resource.data
+            .diff(resource.data)
+            .affectedKeys()
+            .hasOnly(['whatsappClicks'])
+        );
     }
 
-    // Reglas para la colección de reseñas 'reviews'
     match /reviews/{reviewId} {
-      // Cualquiera puede leer las reseñas.
       allow read: if true;
-      // Un usuario autenticado puede crear/actualizar una reseña si el ID del documento
-      // coincide con su UID y el ID del profesional.
-      allow create, update: if request.auth != null && reviewId == request.auth.uid + '_' + request.resource.data.professionalId;
-      // Nadie puede borrar reseñas directamente.
-      allow delete: if false;
+      allow create: if request.auth != null;
+      allow update, delete: if false;
     }
-    
-    // Reglas para la colección de banners publicitarios 'adBanners'
+
     match /adBanners/{bannerId} {
-        // Cualquiera puede ver los banners.
-        allow read: if true;
-        // Solo el admin puede crear, actualizar o borrar banners.
-        allow create, update, delete: if esAdmin();
+      allow read: if true;
+      allow write: if isAdmin();
     }
-    
-    // Reglas para la colección 'analytics'
+
+    match /jobRequests/{jobId} {
+      allow read: if true;
+      allow create: if request.auth != null && request.auth.uid == request.resource.data.clientId;
+      allow update, delete: if (request.auth != null && request.auth.uid == resource.data.clientId) || isAdmin();
+    }
+  
     match /analytics/{docId} {
-      // Cualquiera puede escribir (para el contador de visitas anónimo).
+      allow read: if isAdmin();
       allow write: if true;
-      // Solo el admin puede leer los documentos de analíticas.
-      allow read: if esAdmin();
     }
   }
 }

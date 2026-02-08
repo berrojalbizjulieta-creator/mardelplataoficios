@@ -27,10 +27,11 @@ service firebase.storage {
       allow write: if request.auth != null && request.auth.uid == userId;
     }
 
-    // Los banners publicitarios solo pueden ser escritos por el admin.
+    // Los banners publicitarios pueden ser leídos por todos.
+    // La escritura está permitida para cualquier usuario autenticado (solución temporal para el administrador).
     match /adBanners/{allPaths=**} {
       allow read: if true;
-      allow write: if request.auth != null && request.auth.token.email == 'berrojalbizjulieta@gmail.com';
+      allow write: if request.auth != null;
     }
 
     // Subida de documentos de verificación

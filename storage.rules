@@ -1,0 +1,43 @@
+rules_version = '2';
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    // El dueño del perfil puede escribir, todos pueden leer.
+    match /professional-avatars/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // El dueño del perfil puede escribir, todos pueden leer.
+    match /professional-work-photos/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Para fotos de anuncios de trabajo de clientes
+    match /job-requests/{userId}/{allPaths=**} {
+      allow read: if true; // Todos pueden ver
+      allow write: if request.auth != null && request.auth.uid == userId; // Solo dueño
+    }
+
+    // Los avatares de clientes genéricos siguen la misma lógica.
+    match /user-avatars/{userId}/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Los banners publicitarios solo pueden ser escritos por el admin.
+    match /adBanners/{allPaths=**} {
+      allow read: if true;
+      allow write: if request.auth != null && request.auth.token.email == 'berrojalbizjulieta@gmail.com';
+    }
+
+    // Subida de documentos de verificación
+    match /verification-docs/{userId}/{allPaths=**} {
+      // Solo el usuario dueño del perfil puede subir y leer sus propios documentos
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+  }
+}

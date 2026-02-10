@@ -1,13 +1,14 @@
 [
   {
     "origin": [
-      "https://bahiablancaoficios.com",
-      "https://6000-firebase-studio-1758597332933.cluster-udxxdyopu5c7cwhhtg6mmadhvs.cloudworkstations.dev",
+      "https://www.cerrajerosargentinos.com",
+      "https://cerrajerosargentinos.com",
+      "https://studio.firebase.google.com",
+      "https://6000-firebase-mardelplataoficios-1766016550894.cluster-udxxdyopu5c7cwhhtg6mmadhvs.cloudworkstations.dev",
       "http://localhost:3000",
       "http://localhost:9002",
-      "https://studio-4820039016-5ae38.firebaseapp.com",
-      "https://studio-4820039016-5ae38.web.app",
-      "https://bahiablancaoficios1backend--studio-4820039016-5ae38.us-central1.hosted.app"
+      "https://mardelplataoficios.web.app",
+      "https://mardelplataoficios.firebaseapp.com"
     ],
     "method": ["GET", "POST", "PUT", "PATCH", "DELETE", "HEAD"],
     "responseHeader": [

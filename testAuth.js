@@ -5,13 +5,12 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 
 // Configuración de tu clon
 const firebaseConfig = {
-  apiKey: "AIzaSyAx9ZN9RvrruSNxc7CE-Xqo7AARhpNKmrk",
-  authDomain: "studio-4820039016-5ae38.firebaseapp.com",
-  databaseURL: "https://studio-4820039016-5ae38-default-rtdb.firebaseio.com",
-  projectId: "studio-4820039016-5ae38",
-  storageBucket: "studio-4820039016-5ae38.firebasestorage.app",
-  messagingSenderId: "821979814317",
-  appId: "1:821979814317:web:abd23395565fe4e58f6924"
+  apiKey: "AIzaSyCJjo5iam7VHLGzto6I7urAMYEOU5gcAkE",
+  authDomain: "mardelplataoficios.firebaseapp.com",
+  projectId: "mardelplataoficios",
+  storageBucket: "mardelplataoficios.firebasestorage.app",
+  messagingSenderId: "467689142180",
+  appId: "1:467689142180:web:c053badf4a91f412247331"
 };
 
 // Inicializar Firebase

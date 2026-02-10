@@ -13,7 +13,7 @@ const firebaseConfig = {
   apiKey: "AIzaSyA0i9N5nTatNI7QUSX1x8Oj9TZFBpcsjGQ",
   authDomain: "mardelplataoficios.firebaseapp.com",
   projectId: "mardelplataoficios",
-  storageBucket: "mardelplataoficios.appspot.com",
+  storageBucket: "mardelplataoficios.firebasestorage.app",
   messagingSenderId: "467689142180",
   appId: "1:467689142180:web:9d48f43b71b35b7c247331",
   measurementId: "G-K1J09TWGZH"

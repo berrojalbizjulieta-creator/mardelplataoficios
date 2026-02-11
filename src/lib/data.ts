@@ -34,7 +34,7 @@ export const LOCALIDADES_ARGENTINA = [
   { name: 'Necochea', slug: 'necochea', imageUrl: 'https://i.postimg.cc/x1SkDmNb/17-03-FOTO-Playa.jpg' },
   { name: 'Olavarría', slug: 'olavarria', imageUrl: 'https://i.postimg.cc/05Tdtcx0/images-(3).jpg' },
   { name: 'Tandil', slug: 'tandil', imageUrl: 'https://i.postimg.cc/RVwRHd5J/a5f70bd2-a00c-4c37-8e1a-64bae1549844-(1).webp' },
-  { name: 'Trenque Lauquen', slug: 'trenque-lauquen', imageUrl: 'https://images.unsplash.com/photo-1596701552309-84d728514167?q=80&w=1935&auto=format&fit=crop' },
+  { name: 'Trenque Lauquen', slug: 'trenque-lauquen', imageUrl: 'https://i.postimg.cc/rwQ4LJ6b/470169435-1005805784924112-3831525022329596815-n.jpg' },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export const CATEGORIES: Category[] = [

@@ -10,7 +10,7 @@ import { Button } from '../ui/button';
 
 export function Footer() {
   const whatsappNumber = '5492915088831';
-  const emailAddress = 'bahiablancaoficios@gmail.com';
+  const emailAddress = 'agustinarturogiardino@gmail.com';
   const [isTermsOpen, setIsTermsOpen] = useState(false);
   const [isPrivacyOpen, setIsPrivacyOpen] = useState(false);
 

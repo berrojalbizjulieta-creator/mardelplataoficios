@@ -36,7 +36,7 @@ type ContactFormValues = z.infer<typeof contactSchema>;
 
 const whatsappNumber = '5492915088831';
 const whatsappLink = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent('Hola, me comunico desde el sitio web de Cerrajeros Argentinos.')}`;
-const emailAddress = 'bahiablancaoficios@gmail.com';
+const emailAddress = 'agustinarturogiardino@gmail.com';
 
 export default function ContactoPage() {
   const { toast } = useToast();

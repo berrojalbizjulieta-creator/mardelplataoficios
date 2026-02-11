@@ -27,7 +27,7 @@ export const defaultSchedule: Schedule[] = [
 ];
 
 export const LOCALIDADES_ARGENTINA = [
-  { name: 'Azul', slug: 'azul', imageUrl: 'https://images.unsplash.com/photo-1629815042231-15024765360a?q=80&w=1932&auto=format&fit=crop' },
+  { name: 'Azul', slug: 'azul', imageUrl: 'https://i.postimg.cc/fTyZrRbD/1612azul-1473923.jpg' },
   { name: 'Bahía Blanca', slug: 'bahia-blanca', imageUrl: 'https://i.postimg.cc/1tPHMNGs/1610115832666.jpg' },
   { name: 'La Plata', slug: 'la-plata', imageUrl: 'https://images.unsplash.com/photo-1581624633499-c3b69ec402a7?q=80&w=1974&auto=format&fit=crop' },
   { name: 'Mar del Plata', slug: 'mar-del-plata', imageUrl: 'https://i.postimg.cc/wjSjYqPF/82a2fc89-c29b-4645-89b6-31a6990324a8.png' },

@@ -32,7 +32,7 @@ export const LOCALIDADES_ARGENTINA = [
   { name: 'La Plata', slug: 'la-plata', imageUrl: 'https://i.postimg.cc/zDsZ0S4n/8fe77514-cd3d-49e4-9470-9f42246d41c1.jpg' },
   { name: 'Mar del Plata', slug: 'mar-del-plata', imageUrl: 'https://i.postimg.cc/28tw42JC/5-scaled-(1).webp' },
   { name: 'Necochea', slug: 'necochea', imageUrl: 'https://i.postimg.cc/x1SkDmNb/17-03-FOTO-Playa.jpg' },
-  { name: 'Olavarría', slug: 'olavarria', imageUrl: 'https://images.unsplash.com/photo-1589984622039-0158a085c7d8?q=80&w=1974&auto=format&fit=crop' },
+  { name: 'Olavarría', slug: 'olavarria', imageUrl: 'https://i.postimg.cc/05Tdtcx0/images-(3).jpg' },
   { name: 'Tandil', slug: 'tandil', imageUrl: 'https://i.postimg.cc/RVwRHd5J/a5f70bd2-a00c-4c37-8e1a-64bae1549844-(1).webp' },
   { name: 'Trenque Lauquen', slug: 'trenque-lauquen', imageUrl: 'https://images.unsplash.com/photo-1596701552309-84d728514167?q=80&w=1935&auto=format&fit=crop' },
 ].sort((a, b) => a.name.localeCompare(b.name));

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { Facebook, Instagram, Phone, Mail } from 'lucide-react';
@@ -25,12 +24,11 @@ export function Footer() {
                 <Logo className="h-10 w-auto" />
               </div>
               <p className="mt-4 max-w-xs text-sm text-muted-foreground mx-auto lg:mx-0">
-                Conectando a la comunidad de Argentina con los mejores
-                profesionales y oficios.
+                Conectando a la comunidad de Argentina con los mejores cerrajeros de cada ciudad.
               </p>
               <div className="mt-6 flex space-x-4 justify-center lg:justify-start">
                 <Link
-                  href="https://www.facebook.com/share/1CCm6VA8BM/?mibextid=wwXIfr"
+                  href="https://www.facebook.com/profile.php?id=61588013670240"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary"
@@ -39,7 +37,7 @@ export function Footer() {
                   <Facebook className="h-6 w-6" />
                 </Link>
                 <Link
-                  href="https://www.instagram.com/bahiablancaoficios?igsh=ZzJlYzJwMzhtYjBp"
+                  href="https://www.instagram.com/cerrajerosargentinos?igsh=MjQ2YzltdmhpOWJy"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-muted-foreground hover:text-primary"

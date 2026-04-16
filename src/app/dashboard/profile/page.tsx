@@ -72,7 +72,7 @@ import PaymentDialog from '@/components/professionals/payment-dialog';
 import { subMonths, formatDistanceToNow } from 'date-fns';
 import { es } from 'date-fns/locale';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { CATEGORIES, CATEGORY_SPECIALTIES, defaultSchedule } from '@/lib/data';
+import { CATEGORIES, CATEGORY_SPECIALTIES, defaultSchedule, LOCALIDADES_ARGENTINA } from '@/lib/data';
 import SpecialtiesDialog from '@/components/professionals/specialties-dialog';
 import { useAdminAuth } from '@/hooks/useAdminAuth';
 import { storage, db } from '@/lib/firebase';
@@ -952,7 +952,28 @@ export default function ProfilePage() {
                           Información General
                         </h4>
                         <ul className="space-y-3 text-sm">
-                           <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-primary" /> <span>Sirve a Bahía Blanca</span></li>
+                           {isEditing ? (
+                            <li className="flex items-center gap-3">
+                                <MapPin className="w-4 h-4 text-primary" />
+                                <Select
+                                    value={professional.localidad}
+                                    onValueChange={(value) => handleInputChange('localidad', value)}
+                                >
+                                    <SelectTrigger className="w-full h-8">
+                                        <SelectValue placeholder="Selecciona tu localidad" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        {LOCALIDADES_ARGENTINA.map((loc) => (
+                                            <SelectItem key={loc.slug} value={loc.slug}>
+                                                {loc.name}
+                                            </SelectItem>
+                                        ))}
+                                    </SelectContent>
+                                </Select>
+                            </li>
+                           ) : (
+                            <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-primary" /> <span>Sirve a {professional.localidad ? LOCALIDADES_ARGENTINA.find(l => l.slug === professional.localidad)?.name : 'N/A'}</span></li>
+                           )}
                            <li className="flex items-center gap-3">
                                 <CheckCircle className="w-4 h-4 text-primary" /> 
                                 <span>{professional.isVerified ? "Antecedentes verificados" : "Antecedentes no verificados"}</span>

@@ -515,7 +515,6 @@ export default function PublicProfilePage() {
                         Información General
                       </h4>
                       <ul className="space-y-3 text-sm">
-                          <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-primary" /> <span>Sirve a Bahía Blanca</span></li>
                           <li className="flex items-center gap-3">
                               <CheckCircle className="w-4 h-4 text-primary" /> 
                               <span>{professional.isVerified ? "Antecedentes verificados" : "Antecedentes no verificados"}</span>

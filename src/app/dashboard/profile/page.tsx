@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import React, {useRef, useState, useEffect} from 'react';
@@ -952,28 +950,6 @@ export default function ProfilePage() {
                           Información General
                         </h4>
                         <ul className="space-y-3 text-sm">
-                           {isEditing ? (
-                            <li className="flex items-center gap-3">
-                                <MapPin className="w-4 h-4 text-primary" />
-                                <Select
-                                    value={professional.localidad}
-                                    onValueChange={(value) => handleInputChange('localidad', value)}
-                                >
-                                    <SelectTrigger className="w-full h-8">
-                                        <SelectValue placeholder="Selecciona tu localidad" />
-                                    </SelectTrigger>
-                                    <SelectContent>
-                                        {LOCALIDADES_ARGENTINA.map((loc) => (
-                                            <SelectItem key={loc.slug} value={loc.slug}>
-                                                {loc.name}
-                                            </SelectItem>
-                                        ))}
-                                    </SelectContent>
-                                </Select>
-                            </li>
-                           ) : (
-                            <li className="flex items-center gap-3"><MapPin className="w-4 h-4 text-primary" /> <span>Sirve a {professional.localidad ? LOCALIDADES_ARGENTINA.find(l => l.slug === professional.localidad)?.name : 'N/A'}</span></li>
-                           )}
                            <li className="flex items-center gap-3">
                                 <CheckCircle className="w-4 h-4 text-primary" /> 
                                 <span>{professional.isVerified ? "Antecedentes verificados" : "Antecedentes no verificados"}</span>
